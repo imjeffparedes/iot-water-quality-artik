@@ -1,3 +1,10 @@
+/********************
+Here's my Code for Water Quality Device Monitoring published in 
+https://www.hackster.io/animo/water-quality-moniroting-840fea
+
+********************/
+
+
 #include <WiFi101.h>
 #include <WiFiClient.h>
 #include <ArduinoJson.h> 
@@ -6,27 +13,27 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
-/**Temperature data**/
-#define ONE_WIRE_BUS 2                // Data wire is plugged into digital port 2 on the Arduino
+/**Temperature Sensor Initialization**/
+#define ONE_WIRE_BUS 1                // Data wire is plugged into digital port 1 of Arduino
 OneWire oneWire(ONE_WIRE_BUS);        // Setup a oneWire instance to communicate with any OneWire 
                                       //devices (not just Maxim/Dallas temperature ICs)
 DallasTemperature sensors(&oneWire);  // Pass our oneWire reference to Dallas Temperature. 
 
 /** ARTIK Cloud REST Initialization **/
-char server[] = "api.artik.cloud";   
+char server[] = "api.artik.cloud";    // Samsung ARTIK Cloud API Host
 int port = 443;                       // 443 for HTTPS 
 
-char buf[200]; // buffer to store the JSON to be sent to the ARTIK cloud 
+char buf[200];                        // body data to store the JSON to be sent to the ARTIK cloud 
 
-String deviceID = "artik cloud device id"; 
-String deviceToken = "artik cloud device token";
+String deviceID = "artik cloud device id"; // put your device id here created from tutorial 
+String deviceToken = "artik cloud device token"; // put your device token here created from tutorial
 
 /**pH meter initialization**/
-#define SensorPin A1                  //pH meter Analog output to Arduino Analog Input 1
-#define Offset 0.00                   //deviation compensate
+#define SensorPin A1                  // pH meter Analog output to Arduino Analog Input 1
+#define Offset 0.00                   // deviation compensate
 #define samplingInterval 20
-#define ArrayLenth  40                //times of collection
-int pHArray[ArrayLenth];              //Store the average value of the sensor feedback
+#define ArrayLenth  40                // times of collection
+int pHArray[ArrayLenth];              // Store the average value of the sensor feedback
 int pHArrayIndex=0;   
 
 int status = -1;
@@ -44,7 +51,7 @@ HttpClient client = HttpClient(wifi, server, port);
 void setup(void) {
   millis_start = millis();
   Serial.begin(9600);
-  startWifi();                            //start connecting to wifi
+  startWifi();                             //start connecting to wifi
 }
 
 void loop(void) {
@@ -95,6 +102,7 @@ void loop(void) {
   client.sendHeader("Content-Length", len); 
   client.endRequest(); 
   client.print(buf); 
+  
   // print response from api
   int statusCode = client.responseStatusCode(); 
   String response = client.responseBody(); 
