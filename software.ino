@@ -1,7 +1,11 @@
 /********************
-Here's my Code for Water Quality Device Monitoring published in 
-https://www.hackster.io/animo/water-quality-moniroting-840fea
-
+* Here's my Code for Water Quality Device Monitoring
+* This Arduino code will collect ph and temp data from MKR1000 
+* and send them over Samsung ARTIK Cloud API
+*
+* Author: Jeff Paredes
+* Version 1.0
+*
 ********************/
 
 
