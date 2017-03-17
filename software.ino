@@ -42,6 +42,7 @@ int pHArrayIndex=0;
 
 int status = -1;
 int millis_start;
+int sendInterval = 5;                 // send time interval in seconds
 
 /**Wifi Setting**/
 #define WIFI_AP "your wifi ssid"
@@ -53,6 +54,7 @@ HttpClient client = HttpClient(wifi, server, port);
 
 
 void setup(void) {
+  pinMode(13, OUTPUT);           // set pin 13 (LED) to output
   millis_start = millis();
   Serial.begin(9600);
   startWifi();                             //start connecting to wifi
@@ -111,11 +113,17 @@ void loop(void) {
   int statusCode = client.responseStatusCode(); 
   String response = client.responseBody(); 
   Serial.println("");
+  if(statusCode==200){
+    digitalWrite(13, HIGH);       // turn on LED
+    delay(500);                  // Make delay fro blink
+    digitalWrite(13, LOW);       // turn on LED
+  }
   Serial.print("Status code: "); 
   Serial.println(statusCode); 
   Serial.print("Response: "); 
   Serial.println(response);   
-  delay(1000); // delay of update 
+  delay(sendInterval); // delay of update 
+  
   
 }
 /*Init Connection to Wifi*/
