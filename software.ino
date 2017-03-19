@@ -1,7 +1,3 @@
-#include <StaticThreadController.h>
-#include <Thread.h>
-#include <ThreadController.h>
-
 /********************
 * Here's my Code for Water Quality Device Monitoring
 * This Arduino code will collect ph and temp data from MKR1000 
@@ -12,6 +8,9 @@
 *
 ********************/
 
+#include <StaticThreadController.h>
+#include <Thread.h>
+#include <ThreadController.h>
 #include <WiFi101.h>
 #include <WiFiClient.h>
 #include <ArduinoJson.h> 
@@ -27,7 +26,6 @@ Thread myThread = Thread();
 
 /*
  * Temperature Sensor Initialization
- * 
  */
  
 // we'll save celsius readings here
