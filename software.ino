@@ -262,6 +262,7 @@ void checkTime(){
  * Connect to wifi settings
 */
 void startWifi(){
+  digitalWrite(13, HIGH);       // turn on LED while connecting
   Serial.println("Connecting MKR1000 to network...");
   // attempt to connect to Wifi network:
   while ( status != WL_CONNECTED ) {
@@ -273,6 +274,7 @@ void startWifi(){
     status = WiFi.status();
   }
   Serial.println("Connected!");
+    digitalWrite(13, LOW);       // turn off LED when connected
 }
 
 
