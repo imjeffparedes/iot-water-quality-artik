@@ -43,7 +43,7 @@ int port = 443;                       // 443 for HTTPS
 char buf[200];                        // body data to store the JSON to be sent to the ARTIK cloud 
 String deviceID = "artik cloud device id"; // put your device id here created from tutorial 
 String deviceToken = "artik cloud device token"; // put your device token here created from tutorial
-int sendInterval = 5;                 // send time interval in seconds
+int sendInterval = 120;                 // send time interval in seconds
 
 /**
  * pH meter initialization
@@ -135,7 +135,7 @@ void loop(void) {
   Serial.println(statusCode); 
   Serial.print("Response: "); 
   Serial.println(response);   
-  delay(sendInterval); // delay of update 
+  delay(sendInterval*1000); // delay of update 
   
   
 }
