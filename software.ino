@@ -149,9 +149,6 @@ void loop(void) {
    // Aquiring current temperature
    sensors.requestTemperatures();          // Send the command to get temperatures
    celsius = sensors.getTempCByIndex(0);
-   sensors.requestTemperatures();          // Send the command to get temperatures
-   celsius = sensors.getTempCByIndex(0);
-
 
    // Aquiring current pH value
   static unsigned long samplingTime = millis();
